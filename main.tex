@@ -1,0 +1,62 @@
+\documentclass[12pt,openany]{jbook} 
+
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage[dvipdfmx]{graphicx,xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{siunitx}
+
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\makeatletter
+\renewcommand{\ALG@name}{アルゴリズム}
+\makeatother
+
+\usepackage[top=20truemm,bottom=20truemm,left=18truemm,right=18truemm]{geometry}
+
+\usepackage{here}
+
+\usepackage{bm}
+\usepackage{amsmath,amssymb}
+\usepackage{type1cm}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
+
+\begin{document}
+
+% 表紙
+\begin{center}
+    \LARGE{常微分方程式総まとめ}
+    
+    \Large{\vspace{19cm}にゃにゃん}
+    
+    \Large{2020年11月12日}
+\end{center}
+\thispagestyle{empty}
+\clearpage
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+
+% 本文
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{1first.tex}
+\input{2analytical-ordinary.tex}
+%\input{3analytical-partial.tex}
+\input{4numerical-ordinary.tex}
+%\input{5numerical-partial.tex}
+
+
+\end{document}

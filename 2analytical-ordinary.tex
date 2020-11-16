@@ -1,0 +1,1758 @@
+\chapter{解析的に常微分方程式を解く}
+\label{analytical-ordinary}
+
+第\ref{first}章でも触れた通り、「解析的に微分方程式を解く」とは、式変形を利用して微分方程式を解くことを言います。ですが、世の中にあるほとんどの微分方程式は解析的に解くことができません。でもできれば解析的に微分方程式が解けたほうが様々な考察がしやすくて便利ですよね。ということで人類はできるだけ多くの微分方程式を解析的に解くために様々な技法を考えました。ここでは初歩から込み入った話まで、微分方程式を解析的に解く解き方についてお話しします。
+
+
+
+
+
+
+
+\section{微分の逆操作}
+\label{integrate}
+まず一番単純な微分方程式を解いてみましょう。こちらの$x$を関数として求めたいとします。
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=ax+b
+\end{eqnarray}
+
+$a$と$b$は定数です。これをまず見つめてみましょう。何を意味するでしょうか。
+
+\begin{itemize}
+    \item $y$の傾きは$x$に比例する
+    \item $y$は微分すると$x$のみの関数になる
+\end{itemize}
+
+この2点に気づけましたでしょうか。「何を当たり前な」とおっしゃらず、まずは一度考えてみてください。結論から言ってしまえば、これは$y$を微分したものが$x$のみの関数になるので簡単に解くことができます。どうやって解いたら良いでしょうか。こう書いた方がわかりやすいかもしれません。
+
+\begin{eqnarray}
+    \label{eq:integrate}
+    y'=ax+b
+\end{eqnarray}
+
+\noindent
+そうです。$y'$から$y$を求めるのであれば単純に両辺積分すれば良いのです。
+
+\begin{eqnarray}
+    y&=&\int(ax+b)\dd x \\
+    &=&\frac{1}{2}ax^2+bx+C
+\end{eqnarray}
+
+ここで、新たに出てきた$C$(言ってしまえばただの積分定数ですが)を「任意定数」と言います。今後は$C$や$A$を用いて任意定数を表すことにします。この任意定数の数はその微分方程式に出てくる微分項の階数の最大値と一致します。任意定数がこの数だけ入った形の解を「一般解」と言います。それに対して例えば今回であれば$y(0)=1$などとして$C=1$と決まったときの解を「特殊解」または「特解」と言います。特殊解を決めるときに使う条件を「初期条件」と言います。「初期」とは言っても必ずしも$x=0$の場合を考える必要はありません。
+
+はい、これでこの微分方程式が解けてしまいました。微分方程式は基本的に積分操作を用いて解きます。そもそも微分の逆操作は積分でしたね。微分された形の方程式を解くのであればそれに積分を使うことはご納得いただけることでしょう。
+
+両辺積分して解くことができる微分方程式の一般形は以下です。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=f(x)
+\end{eqnarray}
+
+
+
+
+
+
+
+\section{変数分離形}
+\label{separation}
+セクションの名前は置いておいて、第\ref{first}章の例として出した微分方程式の少し一般化して定数$k$をつけたもの
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=ky
+\end{eqnarray}
+
+\noindent
+を考えてみましょう。これは式\ref{eq:integrate}と違って右辺に$x$がいるのが厄介そうです。
+
+とりあえずこの式の意味するところを考えてみましょう。
+
+\begin{itemize}
+    \item $y$の傾きは$y$に比例する
+    \item $y$を微分しても元の$x$の定数倍である
+\end{itemize}
+
+この2点に気づけましたでしょうか。1つ目は第\ref{first}章でお話しした「真髄」に関するものです。そして2つ目は式の形をよく睨んで考えついたものです。$y$が増えれば増えるほど$y$の傾きが大きくなる。$y$は微分しても(定数を除いて)形が変わらない。この2点をよく考えると、$y$は指数関数ではないか？という考えが浮かぶでしょう。
+
+このように、まず微分方程式をよく見て求める関数のグラフや、関数の数式としての形を推測することが検算の役に立ちます。
+
+では解いていきましょう。まずは$ky$を左辺に移動させます。
+
+\begin{eqnarray}
+    \frac{1}{ky}\frac{\dd y}{\dd x}=1
+\end{eqnarray}
+
+\noindent
+そして$\dd x$を右辺に移動させ\footnote{「$\dd y/\dd x$は分数ではないのにこんなに軽々しく移動させて良いのか」と疑問の方もいらっしゃるでしょう。実はこれは本来置換積分の式です。$\dd x$を右辺に移動させずに両辺$x$で積分してみましょう。 \\
+$\int\frac{1}{ky}\frac{\dd y}{\dd x}\dd x=\int\dd x$ \\
+左辺は見慣れた置換積分の式になりましたね。これを形式的に「$\dd x$を右辺に移動させてインテグラルをつける」としています}
+
+\begin{eqnarray}
+    \label{eq:separation}
+    \frac{1}{ky}\dd y=\dd x
+\end{eqnarray}
+
+\noindent
+積分してみましょう。
+
+\begin{eqnarray}
+    \int\frac{1}{ky}\dd y=\int\dd x \\
+    \frac{1}{k}\ln y = x+C
+\end{eqnarray}
+
+\noindent
+あれれ、$y=$の形では出てきませんでしたね。でもご心配なさらず。このように式変形しましょう。
+
+\begin{eqnarray}
+    \ln y&=&kx+kC \nonumber\\
+    y&=&e^{kx+kC} \nonumber\\
+    y&=&Ae^{kx}
+\end{eqnarray}
+
+\noindent
+ここで、$A=e^{kC}$としました。$A$と$C$は任意定数です。これで$y=$の形で関数が求められましたね！確かに$y$は指数関数になりました。
+
+さて、いきなりですがこのような方法を「変数分離」と言います。式\ref{eq:separation}をご覧ください。左辺には$y$だけ、右辺には$x$だけが出てくるように「変数を分離」しています。このように、変数を分離できれば両辺をうまく積分することができるようになります。この方法を「変数分離」、変数分離できる形の微分方程式を「変数分離形」と言います。
+
+変数分離形の一般的な形は以下の通りです。
+
+\begin{eqnarray}
+    \label{eq:separation-basic}
+    \frac{\dd y}{\dd x}=f(x)g(y)
+\end{eqnarray}
+
+\noindent
+これを、
+
+\begin{eqnarray}
+    \int \frac{1}{g(y)}\dd y=\int f(x)\dd x
+\end{eqnarray}
+
+\noindent
+とすることで、この微分方程式を解くことができます。なお、$g(y)$が恒等的に0の場合は$g(y)$で割ることができません\footnote{「$g(y)$が一瞬でも0を通る場合はどうなんだ」という鋭いツッコミをされる方もいらっしゃるでしょう。結論から言えば大丈夫です。$g(y_0)=0$となる$y_0$が存在するとしましょう。\\
+$\frac{\dd y}{\dd x}=f(x)\cdot 0$ \\
+となり、右辺が0なので定数関数$y=y_0$は明らかにこの微分方程式の解ですね。ではそれ以外の解を考えてみましょう。定数関数$y=y_0$以外の解で、ある値$y=y_0$を通ることがあるとまずいです。一瞬$g(y)=0$となる関数$g(y)$で除算していることになります。しかし、「解の一意性」を考えるとこのようなことはありません。定数関数$y=y_0$以外の関数$y$である値$y=y_0$を通るとすると、この２つの関数$y$は$xy$座標で描いた際に交差、または接していることになります。ここで初期条件$x=x_0$で$y=y_0$を考えてみましょう。あれれ、どちらの関数を解として良いかわからなくなってしまいましたね。どちらの関数も$(x_0, y_0)$を通ります。このようなことがないことを保証するのが「解の一意性」です。微分方程式の解である関数$y$は互いに交差や接触をしないのです。ですので、ある点$y=y_0$で$g(y_0)=0$となる$g(y)$があったとしても、定数関数$y=y_0$だけ別に考えれば良いというわけです。しかも、この定数関数$y=y_0$は、導いた一般解の関数$y$に含まれます。例えば$y=Ae^{kx}$であれば$k=0$の場合ですね。ですので、結論としては恒等的に0となる関数$g$以外であれば何も考えずに割ってしまって良いのです。}。というか、そもそも右辺自体が恒等的に0になってしまうので全く別の微分方程式になってしまいますね。
+
+
+
+
+
+
+\section{同次形}
+\label{homogeneous}
+さて、ここからどんどん微分方程式を解いていきます。これからはまず微分方程式の一般的な形を示して、その後にその微分方程式を解いていきます。
+
+「同次形」という形の微分方程式の一般形は以下です。
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=f\pqty{\frac{y}{x}}
+\end{eqnarray}
+
+\noindent
+$u=y/x$として$\dd u/\dd x$を計算してみると、
+
+\begin{eqnarray}
+    \frac{\dd u}{\dd x}=-\frac{y}{x^2}+\frac{1}{x}\frac{\dd y}{\dd x}
+\end{eqnarray}
+
+\noindent
+となります。ここから後の式変形のために$\dd y/\dd x$を取り出すと、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=\frac{\dd u}{\dd x}x+u
+\end{eqnarray}
+
+\noindent
+となります。これを元の微分方程式の左辺に代入して少し変形してみましょう。右辺は$y/x$を$u$に置換します。
+
+\begin{eqnarray}
+    \frac{\dd u}{\dd x}x+u&=&f(u) \\
+    \frac{\dd u}{\dd x}&=&\frac{1}{x}(f(u)-u)
+\end{eqnarray}
+
+\noindent
+おっと、これは変数分離形ではないでしょうか。変数分離形の基本形は式\ref{eq:separation-basic}の通りでした。これの$y$を$u$に置換して見ると、右辺は$x$の関数と$u$の関数の積で書いてあることがわかるでしょう。実際に変数分離で解いてみます。
+
+\begin{eqnarray}
+    \int \frac{\dd u}{f(u)-u}&=&\int\frac{\dd x}{x}
+\end{eqnarray}
+
+このように積分を実行することで、$u$が求められます。$u=y/x$でしたから、求まった$u$に$x$を掛けてやれば求めたい関数$y$が無事求められます。
+
+
+
+
+
+
+
+\subsection{発展版同次形}
+\label{advanced-homogeneous}
+
+次に以下の形を考えてみましょう。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=f\pqty{\frac{ax+by+c}{a'x+b'y+c'}}
+\end{eqnarray}
+
+\noindent
+これも実は同次形に帰着して解くことができます。やってみましょう。
+
+天下り的ですが、
+
+\begin{eqnarray}
+    c&=&-a\alpha-b\beta \\
+    c'&=&-a'\alpha-b'\beta
+\end{eqnarray}
+
+\noindent
+を満たす$\alpha$と$\beta$を見つけます。式変形すれば、
+
+\begin{eqnarray}
+    \alpha&=&\frac{b'c-bc'}{a'b+ab'} \\
+    \beta&=&\frac{-a'c-ac'}{a'b+ab'}
+\end{eqnarray}
+
+\noindent
+ということがわかると思います。
+
+ここで、$x=X+\alpha$、$y=Y+\beta$と置換します。関数$f$の中の分子は、$c$と$\alpha$、$\beta$の変換式を使えば、
+
+\begin{eqnarray}
+    ax+by+c&=&a(X+\alpha)+b(Y+\beta)+c \nonumber \\
+    &=&(aX+bY)+(a\alpha+b\beta)+(-a\alpha-b\beta) \nonumber \\
+    &=&aX+bY
+\end{eqnarray}
+
+\noindent
+とすっきりした形になります。分母も同様に、
+
+\begin{eqnarray}
+    a'x+b'y+c'=a'X+b'Y
+\end{eqnarray}
+
+\noindent
+となります。
+
+微分方程式の左辺については、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=\frac{\dd Y}{\dd X}
+\end{eqnarray}
+
+\noindent
+ですから、結局すべてをまとめると
+
+\begin{eqnarray}
+    \frac{\dd Y}{\dd X}=f\pqty{\frac{aX+bY}{a'X+b'Y}}
+\end{eqnarray}
+
+\noindent
+となります。大分見通しが良くなりましたね。この分子分母をそれぞれ$X$で割ってみましょう。
+
+\begin{eqnarray}
+    \frac{\dd Y}{\dd X}=f\pqty{\frac{a+b\frac{Y}{X}}{a'+b'\frac{Y}{X}}}
+\end{eqnarray}
+
+出てきました、$Y/X$。これで同次形に帰着できました。あとは\ref{homogeneous}節の同次形として解けます。
+
+
+
+
+
+
+
+\section{一階線形微分方程式}
+\label{first-order}
+「一階線形微分方程式」とは、以下の形をした微分方程式のことです。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}+P(x)y+Q(x)=0
+    \label{eq:first-order}
+\end{eqnarray}
+
+「一階」とは、微分項の最大階数が1であるという意味、「線形」とは、$\dd y/\dd x$と$y$の線形結合で書かれた方程式であるということを意味します。
+
+このとき、$Q(x)$の状態によってさらに2通りに分けられます。
+
+\begin{itemize}
+    \item $Q(x)=0$: 一階斉次線形微分方程式
+    \item $Q(x)\neq0$: 一階非斉次線形微分方程式
+\end{itemize}
+
+斉次のときは
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=-P(x)y
+\end{eqnarray}
+
+\noindent
+ですから、変数分離形(\ref{separation}節)として解くことができます。解は、
+
+\begin{eqnarray}
+    \int \frac{\dd y}{y}=-\int P(x)\dd x \\
+    y=Ce^{-\int P(x)\dd x}
+    \label{eq:homogeneous-2}
+\end{eqnarray}
+
+\noindent
+と与えられます。
+
+問題は非斉次のときです。非斉次の場合は2通りの解き方があります。
+
+
+
+
+
+
+\subsection{特殊解を見つける}
+\label{special-solution}
+この微分方程式を満たす特殊解を(エスパーで)発見できれば、あっさりと解くことができます。$y=y_1(x)$はこの微分方程式を満たす特殊解であるとしましょう。
+
+\begin{eqnarray}
+    \frac{\dd y_1}{\dd x}+P(x)y_1+Q(x)=0
+    \label{eq:special-y_1}
+\end{eqnarray}
+
+\noindent
+です。ここで、関数$Y(x)$を使って$y=Y+y_1$と置換してみましょう。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}(Y+y_1)+P(x)(Y+y_1)+Q(x)=0 \\
+    \frac{\dd Y}{\dd x}+P(x)Y+\pqty{\frac{\dd y_1}{\dd x}+P(x)y_1+Q(x)}=0 \nonumber \\
+    \frac{\dd Y}{\dd x}+P(x)Y=0
+\end{eqnarray}
+
+\noindent
+式\ref{eq:special-y_1}を使うことで、$Q(x)$の項を消すことができます。これで斉次に帰着できました。変数分離形(\ref{separation}節)として解くことができます。解は、
+
+\begin{eqnarray}
+    y=y_1(x)+Ce^{-\int P(x)\dd x}
+    \label{eq:homogeneous-special}
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+
+\subsection{定数変化法}
+\label{constant-change}
+微分方程式が簡単な形をしている場合には特殊解をすぐに見つけられることがありますが、そう簡単にはいかない場合もあります。そんなときには定数変化法を使って特殊解を求めましょう。定数変化法は、式\ref{eq:homogeneous-2}の任意定数$C$を$x$の関数であると見て、
+
+\begin{eqnarray}
+    y_1=C(x)e^{-\int P(x)\dd x}
+    \label{eq:constant-change}
+\end{eqnarray}
+
+\noindent
+と特殊解を置いて、元の微分方程式に代入して解を探します\footnote{「そんな身勝手なことをして良いのか」という話ですが、これは特殊解を探す一つの手段です。特殊解はどんな関数であれこの微分方程式を満たしてくれさえすれば良いのです。今回はこのような形で特殊解があることを仮定して探します。}。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}\pqty{C(x)e^{-\int P(x)\dd x}}+P(x)C(x)e^{-\int P(x)\dd x}+Q(x)=0
+\end{eqnarray}
+
+\noindent
+左辺第一項を実際に微分してみましょう。
+
+\begin{eqnarray}
+    \pqty{\frac{\dd}{\dd x}C(x)\cdot e^{-\int P(x)\dd x}-P(x)C(x)e^{-\int P(x)\dd x}}+P(x)C(x)e^{-\int P(x)\dd x}+Q(x)&=&0 \nonumber\\
+    \frac{\dd}{\dd x}C(x)\cdot e^{-\int P(x)\dd x}+Q(x)&=&0
+\end{eqnarray}
+
+鮮やかに$P(x)C(x)e^{-\int P(x)\dd x}$が打ち消し合って消えてくれました。しかも$Q(x)$は$x$のみの関数で、$C(x)$の関数ではありません。これで$C(x)$を求められそうです。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}C(x)\cdot e^{-\int P(x)\dd x}&=&-Q(x) \\
+    C(x)&=&-\int Q(x)e^{\int P(x)\dd x}\dd x
+    \label{eq:constant-change-C}
+\end{eqnarray}
+
+これで特殊解が求められました。特殊解$y_1$は、
+
+\begin{eqnarray}
+    y_1=-e^{-\int P(x)\dd x}\int Q(x)e^{\int P(x)\dd x}\dd x
+\end{eqnarray}
+
+\noindent
+です。では\ref{special-solution}節の方法を使って一般解を求めてみましょう。一般解は式\ref{eq:homogeneous-special}を使って、
+
+\begin{eqnarray}
+    y&=&-e^{-\int P(x)\dd x}\int Q(x)e^{\int P(x)\dd x}\dd x+Ce^{-\int P(x)\dd x} \nonumber \\
+    &=&\pqty{C-\int Q(x)e^{\int P(x)\dd x}\dd x}e^{-\int P(x)\dd x}
+    \label{eq:constant-change-ans}
+\end{eqnarray}
+
+\noindent
+です。なお、ここで出てきた$C$は、紛らわしいですが特殊解を探す上で使用した$C(x)$とは別物で、任意定数です。
+
+ここで、式\ref{eq:constant-change-C}をもう一度見てみましょう。この積分定数(これも一種の微分方程式(\ref{integrate}節で紹介したものに当たります)なので任意定数と言えます)はどこへ行ったのでしょうか。「特殊解を探す」という目的なら積分定数は何でも良いのですが、仮にこれを明示的に$C$と置いてみましょう。ここでも積分定数(任意定数)$C$と関数$C(x)$は別物です。
+
+\begin{eqnarray}
+    C(x)=-\int Q(x)e^{\int P(x)\dd x}\dd x+C
+\end{eqnarray}
+
+\noindent
+これを式\ref{eq:constant-change}に代入すると、
+
+\begin{eqnarray}
+    y=\pqty{C-\int Q(x)e^{\int P(x)\dd x}\dd x}e^{-\int P(x)\dd x} \nonumber
+\end{eqnarray}
+
+あれ、式\ref{eq:constant-change-ans}(定数変化法を使って求めた一般解)と一致しましたね。実は左辺を特殊解を表す$y_1$でなく一般解を表す$y$にさりげなく置き換えておきました。
+
+一般解はその微分方程式の階数だけの任意定数を含んだものを言います。今回は$C(x)$を求めたときに明示的に積分定数を$C$としたことで、これが任意定数となってしまったのです。
+
+定数変化法は「特殊解を見つける」手段ではありますが、このように任意定数を途中で置いてしまうことで一般解の導出まで一気にできてしまいます。
+
+
+
+
+
+
+\subsection{積分因子}
+\label{first-order--integrating-factor}
+突然ですが問題の式\ref{eq:first-order}の両辺に$e^{\int P(x)\dd x}$を掛けてみましょう。すると、
+
+\begin{eqnarray}
+    e^{\int P(x)\dd x}\frac{\dd y}{\dd x}+P(x)e^{\int P(x)\dd x}y+e^{\int P(x)\dd x}Q(x)=0
+\end{eqnarray}
+
+となります。左辺第一項、第二項をよく見ると、この2つはまとめて$ye^{\int P(x)\dd x}$の微分の形になっていることに気づきます。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}\pqty{ye^{\int P(x)\dd x}}+Q(x)e^{\int P(x)\dd x}=0 \nonumber \\
+    \frac{\dd}{\dd x}\pqty{ye^{\int P(x)\dd x}}=-Q(x)e^{\int P(x)\dd x}
+\end{eqnarray}
+
+右辺は$x$だけの式です。\ref{integrate}節のように両辺を$x$で積分してみましょう。
+
+
+\begin{eqnarray}
+    ye^{\int P(x)\dd x}&=&-\int Q(x)e^{\int P(x)\dd x} \dd x+C \nonumber \\
+    y&=&\pqty{C-\int Q(x)e^{\int P(x)\dd x}\dd x}e^{-\int P(x)\dd x}
+\end{eqnarray}
+
+狐につままれたような感覚ですが、なんと答えが求まってしまいました。
+
+このように、微分方程式全体にある因子を掛けることで呆気なく微分方程式が解けてしまうことがあります。このような因子を「積分因子」と言います。
+
+
+
+
+
+
+
+\section{完全形}
+\label{perfect}
+
+完全形とは、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=-\frac{f(x,y)}{g(x,y)}
+    \label{eq:perfect}
+\end{eqnarray}
+
+\noindent
+という形の微分方程式において、
+
+\begin{eqnarray}
+    \frac{\partial f}{\partial y}=\frac{\partial g}{\partial x}
+    \label{eq:perfect-terms}
+\end{eqnarray}
+
+\noindent
+を満たす微分方程式を言います。
+
+これを少し変形してみましょう。\ref{eq:perfect}の分母を払って移項すると、
+
+\begin{eqnarray}
+    f(x,y)\dd x+g(x,y)\dd y=0
+    \label{eq:perfect-flat}
+\end{eqnarray}
+
+\noindent
+となります。ここで関数$u(x,y)$を
+
+\begin{eqnarray}
+    \frac{\partial u}{\partial x}=f(x,y),\ \frac{\partial u}{\partial y}=g(x,y)
+    \label{eq:perfect-u-terms}
+\end{eqnarray}
+
+\noindent
+と定義して導入します。すると、式\ref{eq:perfect-flat}は、
+
+\begin{eqnarray}
+    \frac{\partial u}{\partial x}\dd x+\frac{\partial u}{\partial y}\dd y=0=\dd u
+\end{eqnarray}
+
+となります。関数$u$の全微分の形ですね。これが完全形の正体です\footnote{この関数$u$が存在する条件が式\ref{eq:perfect-terms}です}。これを満たす関数$u$を求めれば、それは$x$と$y$の関係が求められたことになるので、「微分方程式が解けた」と言えます\footnote{微分方程式は必ずしも解が$y=$の形にならないといけないわけではありません。$y=$の形になればすっきりしますが、とにかく$x$と$y$の関係が微分項を含まずに記述できればOKなのです。}。
+
+では具体的に関数$u$を求めていきましょう。まずは式\ref{eq:perfect-u-terms}の関数$f$に関する式を積分します。
+
+\begin{eqnarray}
+    \frac{\partial u}{\partial x}&=&f(x,y) \nonumber \\
+    u&=&\int f(x,y) \dd x+h(y)
+    \label{eq:perfect-ans-u}
+\end{eqnarray}
+
+\noindent
+元々$x$で偏微分した形で書かれた式を積分したので、関数$h(y)$が出てきます。$\int f(x,y) \dd x$は与えられた式を積分するだけなので良いとして、問題はこの関数$h$です。とりあえず式\ref{eq:perfect-u-terms}の関数$g$に関する式に代入して関数$h$について整理してみましょう。
+
+\begin{eqnarray}
+    \frac{\partial}{\partial y}\pqty{\int f(x,y) \dd x+h(y)}=g(x,y) \\
+    \frac{\dd }{\dd y}h(y)=g(x,y)-\frac{\partial}{\partial y}\int f(x,y) \dd x
+    \label{eq:perfect-u}
+\end{eqnarray}
+
+両辺を$y$で積分してみると、
+
+\begin{eqnarray}
+    h(y)=\int\pqty{g(x,y)-\frac{\partial}{\partial y}\int f(x,y) \dd x}\dd y
+\end{eqnarray}
+
+\noindent
+となります。ここで両辺をよく睨むと、左辺の関数$h$は$y$のみの関数なのに、右辺には$x$の関数が2つ出てくることに気づくでしょう。つまり、右辺の$x$を含む項は互いに打ち消し合っているのです。少し寄り道して、この$g(x,y)-\int f(x,y) \dd x$を$x$で偏微分して値が本当に0になるか($x$を含む項が打ち消し合っているか)を見てみましょう。
+
+\begin{eqnarray}
+    \frac{\partial}{\partial x}\pqty{g(x,y)-\frac{\partial}{\partial y}\int f(x,y) \dd x}&=&\frac{\partial g}{\partial x}-\frac{\partial f}{\partial y}
+\end{eqnarray}
+
+式\ref{eq:perfect-terms}の条件を考えると、確かに右辺は0になります。
+
+さて、では本筋に戻りましょう。$\partial/\partial y\int f(x,y) \dd x$についてよく考えてみましょう。式\ref{eq:perfect-u}で積分定数(定数ではなく関数ですが)を$h(y)$と置いたので、$\int f(x,y) \dd x$単体には今積分定数(関数)がありません。つまり、この全ての項には$x$が何らかの形でつきます。これを$y$で偏微分したところで、全ての項に$x$が関わることに変わりはありません。つまり上の議論の通り、$\partial/\partial y\int f(x,y) \dd x$に出てくる項は全て$g(x,y)$と打ち消し合ってしまうのです。
+
+ここから以下が言えます。
+
+\begin{eqnarray}
+    h(y)=\int g(x,y)\dd y\ \mbox{に出てくる$x$を含まない項}
+\end{eqnarray}
+
+さて、$g(x,y)$は与えられた式ですので、これを$y$で積分して適宜$y$を含む項を抜き去れば$h(y)$が求められるということになります。なんとこれを式\ref{eq:perfect-ans-u}に代入すれば、目的の関数$u$は求まってしまいます。数式としてこれを記述し直すと、
+
+\begin{eqnarray}
+    u(x,y)=\int f(x,y)\dd x+\int \pqty{g(x,y)-\frac{\partial}{\partial y}\pqty{\int g(x,y)\dd x}}\dd y
+    \label{eq:perfect-ans}
+\end{eqnarray}
+
+\noindent
+となります。
+
+
+
+
+
+
+
+\subsection{積分因子}
+\label{perfect-integrating-factor}
+積分因子、再登場です。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=-\frac{f(x,y)}{g(x,y)} \nonumber
+\end{eqnarray}
+
+\noindent
+という形の微分方程式があっても
+
+\begin{eqnarray}
+    \frac{\partial f}{\partial y}=\frac{\partial g}{\partial x} \nonumber
+\end{eqnarray}
+
+\noindent
+を満たさなければ完全形とは言えません。ですが、右辺の分子分母に$\lambda(x,y)$を掛けることで微分方程式が完全形になる場合があります。この積分因子を見つける系統的な手法はありませんが、積分因子に$x^my^n$を仮定して
+
+\begin{eqnarray}
+    \frac{\partial \lambda f}{\partial y}=\frac{\partial \lambda g}{\partial x}
+\end{eqnarray}
+
+\noindent
+に代入して$m$と$n$を求められる場合があります。
+
+
+
+
+
+
+
+
+\section{ベルヌーイの微分方程式}
+\label{bernoulli}
+ここから人名のついた微分方程式が連続します。まずはベルヌーイの微分方程式です。これは、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}+f(x)y=g(x)y^n
+\end{eqnarray}
+
+\noindent
+という形をしたものです。$n=0,1$であれば一階線形微分方程式ですが、ここでは$n\geq2$の場合を考えてみましょう。$z=y^{1-n}$として、まず$\dd z/\dd x$を計算します。
+
+\begin{eqnarray}
+    \frac{\dd z}{\dd x}=(1-n)y^{-n}\frac{\dd y}{\dd x}
+\end{eqnarray}
+
+微分方程式全体に$(1-n)y^{-n}$を掛けると、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}(1-n)y^{-n}+f(x)(1-n)y^{1-n}&=&(1-n)g(x) \\
+    \frac{\dd z}{\dd x}+(1-n)f(x)z&=&(1-n)g(x)
+\end{eqnarray}
+
+\noindent
+となります。これは一階線形微分方程式ですね。\ref{first-order}節の通りに解くことができます。$z$について解を求めて、$y=\sqrt[1-n]{z}$と置換すれば答えが求まります。
+
+
+
+
+
+
+\section{リカッチの微分方程式}
+\label{ricatch}
+リカッチの微分方程式は
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}=f(x)+g(x)y+h(x)y^2
+\end{eqnarray}
+
+の形をしたものです。$f(x)=0$でベルヌーイの微分方程式(\ref{bernoulli}節)です。これは頑張って特殊解$y=y_1(x)$を見つけて、\ref{special-solution}節と同じように関数$Y(x)$を使って$y=Y+y_1$と置きます。まず特殊解の条件を書いておきましょう。
+
+\begin{eqnarray}
+    \frac{\dd y_1}{\dd x}=f(x)+g(x)y_1+h(x)y_1^2
+    \label{eq:ricatch-terms}
+\end{eqnarray}
+
+それでは実際に置換してみましょう。
+
+\begin{eqnarray}
+    \frac{\dd Y}{\dd x}+\frac{\dd y_1}{\dd x}&=&f(x)+g(x)(Y+y_1)+h(x)(Y+y_1)^2 \\
+    \frac{\dd Y}{\dd x}+\frac{\dd y_1}{\dd x}&=&\pqty{f(x)+g(x)y_1+h(x)y_1^2}+g(x)Y+h(x)Y^2+2h(x)Yy_1
+\end{eqnarray}
+
+\noindent
+式\ref{eq:ricatch-terms}を使って左辺第二項と右辺のカッコの中を消しましょう。
+
+\begin{eqnarray}
+    \frac{\dd Y}{\dd x}&=&g(x)Y+h(x)Y^2+2h(x)Yy_1 \nonumber \\
+    &=&(g(x)+2h(x)y_1)Y+h(x)Y^2
+\end{eqnarray}
+
+これはベルヌーイの微分方程式($n=2$)です。$z=Y^{-1}$として式全体に$-Y^{-2}$を掛けると、
+
+\begin{eqnarray}
+    -Y^{-2}\frac{\dd Y}{\dd x}&=&-(g(x)+2h(x)y_1)Y^{-1}-h(x) \nonumber \\
+    \frac{\dd z}{\dd x}&=&-(g(x)+2h(x)y_1)z-h(x)
+\end{eqnarray}
+
+これで一階線形微分方程式に帰着できました。\ref{first-order}節の方法を使って解くことができます。$z$について解いて$y=y_1+1/z$と置換すれば答えが求まります。
+
+
+
+
+
+
+
+\section{ダランベールの微分方程式}
+\label{dalambert}
+ダランベールの微分方程式はこんな形をしています。
+
+\begin{eqnarray}
+    y=xf\pqty{\frac{\dd y}{\dd x}}+g\pqty{\frac{\dd y}{\dd x}}
+\end{eqnarray}
+
+$\dd y/\dd x$を$p$と置いて両辺を$x$で微分してみましょう。
+
+\begin{eqnarray}
+    \label{eq:dalambert-y}
+    y&=&xf(p)+g(p) \\
+    p&=&f(p)+x\frac{\dd p}{\dd x}\frac{\dd}{\dd p}f(p)+\frac{\dd p}{\dd x}\frac{\dd}{\dd p}g(p)
+\end{eqnarray}
+
+\noindent
+少しトリッキーですが、ここで$\dd x/\dd p$についてまとめてみましょう。つまり、$x$を$p$の関数と見るということです。
+
+\begin{eqnarray}
+    \pqty{x\frac{\dd}{\dd p}f(p)+\frac{\dd}{\dd p}g(p)}\frac{\dd p}{\dd x}&=&p-f(p) \\
+    \frac{\dd x}{\dd p}&=&\frac{\frac{\dd}{\dd p}f(p)}{p-f(p)}x+\frac{\frac{\dd}{\dd p}g(p)}{p-f(p)}
+\end{eqnarray}
+
+これは$x$と$p$の一階線形微分方程式です。$x$を$p=\dd y/\dd x$について解きます。すると、
+
+\begin{eqnarray}
+    x=h(p)
+\end{eqnarray}
+
+\noindent
+という関数$h(p)$を伴った式が現れます。これと式\ref{eq:dalambert-y}を連立することで$p$を消去します。言わば$p$を媒介変数として$y$と$x$の関係を求めるわけですね。
+
+
+
+
+
+
+
+\subsection{クレローの微分方程式}
+\label{clairaut}
+クレローの微分方程式はダランベールの微分方程式の特殊な場合です。
+
+\begin{eqnarray}
+    y=x\frac{\dd y}{\dd x}+g(\frac{\dd y}{\dd x})
+\end{eqnarray}
+
+\noindent
+ダランベールの微分方程式で$f(\dd y/\dd x)=\dd y/\dd x$となったものですね。ダランベールの微分方程式と同じように$p=\dd y/\dd x$を導入して両辺を$x$で微分してみましょう。
+
+\begin{eqnarray}
+    \label{eq:clairaut-y}
+    y&=&xp+g(p) \\
+    p&=&p+x\frac{\dd p}{\dd x}+\frac{\dd p}{\dd x}\frac{\dd}{\dd p}g(p) \\
+    0&=&\frac{\dd p}{\dd x}\pqty{x+\frac{\dd}{\dd p}g(p)}
+\end{eqnarray}
+
+\noindent
+かなりすっきりしましたね。左辺が0ですので、右辺の2項のどちらが0になるかで場合分けしましょう。
+
+\begin{itemize}
+    \item $\dd p/\dd x=0$のとき、$p=C$より$y=Cx+g(C)$です。この場合が特殊です。
+    \item $x+\dd g(p)/\dd p=0$のとき、これと式\ref{eq:clairaut-y}を連立して$p$を消去して解となります。この場合はただのダランベールの微分方程式ですね。
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+\section{二階線形微分方程式}
+\label{second-order}
+二階の微分項が入った形の微分方程式です。
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}+P(x)\frac{\dd y}{\dd x}+Q(x)y+R(x)=0
+\end{eqnarray}
+
+これについて、一階線形微分方程式と同様に斉次・非斉次の場合の大まかな解き方をご説明しましょう。
+
+$R(x)=0$、つまり斉次の場合は、階数である2つの線形独立な解($y=y_2,y=y_3$\footnote{本書では$y_1$を特殊解の意味で使っているので$y_2$から始まるようにしました。少し見にくいですが許してください。}とします。これらを基本解と言います。)\footnote{線形独立でない解とは、ここでは$k$を定数として、$y2=ky_3$のように片方がもう片方の定数倍で表すことができる解のことです。つまり、線形独立な解とは片方が片方の定数倍で表せない解のことを言います。}の重ね合わせ(線形結合)
+
+\begin{eqnarray}
+    y=c_2y_2+c_3y_3
+\end{eqnarray}
+
+\noindent
+が一般解です。なお、$c_2$と$c_3$は任意定数です。
+
+この重ね合わせの原理はなぜ成り立つのでしょうか。実際に$y=c_2y_2+c_3y_3$を微分方程式に代入してみましょう。
+
+\begin{eqnarray}
+    &&c_2\frac{\dd^2y_2}{\dd x^2}+c_3\frac{\dd^2y_3}{\dd x^2}+c_2P(x)\frac{\dd y_2}{\dd x}+c_3P(x)\frac{\dd y_3}{\dd x}+c_2Q(x)y_2+c_3Q(x)y_3 \nonumber\\
+    &=&c_2\pqty{\frac{\dd^2y_2}{\dd x^2}+P(x)\frac{\dd y_2}{\dd x}+Q(x)y_2}+c_3\pqty{\frac{\dd^2y_3}{\dd x^2}+P(x)\frac{\dd y_3}{\dd x}+Q(x)y_3} \nonumber\\
+    &=&0 \nonumber
+\end{eqnarray}
+
+$y_2$と$y_3$がこの微分方程式を満たすことを利用すれば、確かに$y=c_2y_2+c_3y_3$も解でした。式をよく睨むと、この重ね合わせの原理は微分方程式の線形性\footnote{$y^2$のように$n$乗された項や$y\dd y/\dd x$のように$y$にまつわる関数同士が掛けられた項がないということです。}から来る性質だということがわかります。
+
+ところが、$R(x)\neq0$、つまり非斉次の場合には重ね合わせの原理は成り立ちません。実際に微分方程式に代入して確かめてみてください。非斉次の場合は頑張って特殊解$y=y_1$を見つけ、$y=Y+y_1$と置換して$Y$についての線形独立な2つの基本解$Y=Y_2, Y=Y_3$を見つけます。これらの重ね合わせと$y_1$との和
+
+\begin{eqnarray}
+    y=y_1+c_2Y_2+c_3Y_3
+\end{eqnarray}
+
+\noindent
+が解となります。
+
+もしかしたらお気づきかもしれませんが、一般の$n$階線形微分方程式については$n$個の線形独立な基本解を見つけ、その全ての解を重ね合わせたものが一般解になります。
+
+
+
+
+
+
+
+\subsection{定数係数の二階斉次線形微分方程式}
+\label{second-order-const}
+定数係数なので、このような形をした微分方程式です。
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}+a\frac{\dd y}{\dd x}+by=0
+    \label{eq:second-order-const}
+\end{eqnarray}
+
+右辺が0でないときは非斉次です。特殊解$y=y_1$を探して斉次に持ち込みましょう。このとき、定数変化法が使えます。\ref{second-order-constant-change}節でお話しします。
+
+斉次式(右辺$=0$)の場合は解に
+
+\begin{eqnarray}
+    y=e^{\lambda x}
+    \label{eq:second-order-const-y}
+\end{eqnarray}
+
+\noindent
+の形を仮定して微分方程式に代入してみます\footnote{「解を仮定なんてして良いのか」と思われるかもしれませんが、私たちがやるべきことはどんな形の解であれ線形独立な基本解を2つ見つけることです。仮定した解がうまく本当の解になってくれたら嬉しくありませんか？}。すると、
+
+\begin{eqnarray}
+    \lambda^2e^{\lambda x}+a\lambda e^{\lambda x}+be^{\lambda x}&=&0 \\
+    \lambda^2+a\lambda+b&=&0
+    \label{eq:second-order-lambda}
+\end{eqnarray}
+
+\noindent
+という二次方程式になります。これを特性方程式と言います。なんだかとてもすっきりしましたね。この判別式の正負で場合分けをしましょう。
+
+
+
+\subsubsection{判別式が正の場合}
+判別式が正とは、
+
+\begin{eqnarray}
+    a^2-4b>0
+\end{eqnarray}
+
+\noindent
+のときのことを言います。この場合、$\lambda$について、2つの実数解$\lambda_2, \lambda_3$\footnote{ここも特殊解との区別、およびインデックスを揃えるために2で始まるようにしています}が求まります。この場合、それぞれの$\lambda$を式\ref{eq:second-order-const-y}に代入すると、線形独立な2つの基本解が求まります。片方がもう片方の定数倍で表せることはありません。よって、一般解は
+
+\begin{eqnarray}
+    y=c_2e^{\lambda_2x}+c_3e^{\lambda_3x}
+\end{eqnarray}
+
+\noindent
+です。
+
+\subsubsection{判別式が負の場合}
+判別式が負なので、
+
+\begin{eqnarray}
+    a^2-4b<0
+\end{eqnarray}
+
+\noindent
+の場合です。こちらも$\lambda$について2つの複素数解$\lambda_2, \lambda_3$が求まります。このままこの$\lambda$を式\ref{eq:second-order-const-y}に代入すれば2つの基本解が求まります。よって、一般解は判別式が正の場合と同じく
+
+\begin{eqnarray}
+    y=c_2e^{\lambda_2x}+c_3e^{\lambda_3x} \nonumber
+\end{eqnarray}
+
+\noindent
+です。
+
+\subsubsection{判別式が0の場合}
+問題は判別式が0の場合です。
+
+\begin{eqnarray}
+    a^2-4b=0
+    \label{eq:second-order-same}
+\end{eqnarray}
+
+二次方程式の解$\lambda_2$が重解となって1つしか現れません。そこで、定数変化法を使ってみましょう。2つの基本解を以下のように置いてみます。$y_2$は出てきた$\lambda_2$をそのまま式\ref{eq:second-order-const-y}に入れた形です。
+
+\begin{eqnarray}
+    y_2&=&e^{\lambda_2 x} \\
+    y_3&=&C(x)e^{\lambda_2 x}
+    \label{eq:second-order-const-y3}
+\end{eqnarray}
+
+これがもし解になれば、$C(x)$は$x$の関数なので、線形独立な基本解が求められることになります。これを元の微分方程式\ref{eq:second-order-const}に代入してみるのですが、その前に$\dd y_3/\dd x$と$\dd^2 y_3/\dd x^2$を求めておきましょう。
+
+\begin{eqnarray}
+    \frac{\dd y_3}{\dd x}&=&e^{\lambda_2 x}\pqty{\frac{\dd}{\dd x}C(x)+\lambda_2 C(x)} \\
+    \frac{\dd^2 y_3}{\dd x^2}&=&\lambda_2 e^{\lambda_2 x}\pqty{\frac{\dd}{\dd x}C(x)+\lambda_2 C(x)}+e^{\lambda_2 x}\pqty{\frac{\dd^2}{\dd x^2}C(x)+\lambda_2 \frac{\dd}{\dd x}C(x)} \nonumber \\
+    &=&e^{\lambda_2 x}\pqty{\frac{\dd^2}{\dd x^2}C(x)+2\lambda_2 \frac{\dd}{\dd x}C(x)+\lambda_2^2C(x)}
+\end{eqnarray}
+
+では式\ref{eq:second-order-const}に代入しましょう。
+
+\begin{eqnarray}
+    e^{\lambda_2 x}\pqty{\frac{\dd^2}{\dd x^2}C(x)+2\lambda_2 \frac{\dd}{\dd x}C(x)+\lambda_2^2C(x)}+ae^{\lambda_2 x}\pqty{\frac{\dd}{\dd x}C(x)+\lambda_2 C(x)}+bC(x)e^{\lambda_2 x}=0 \\
+    \pqty{\frac{\dd^2}{\dd x^2}C(x)+2\lambda_2 \frac{\dd}{\dd x}C(x)+\lambda_2^2C(x)}+a\pqty{\frac{\dd}{\dd x}C(x)+\lambda_2 C(x)}+bC(x)=0 \nonumber \\
+    \frac{\dd^2}{\dd x^2}C(x)+(2\lambda_2+a)\frac{\dd}{\dd x}C(x)+(\lambda_2^2+a\lambda_2+b)C(x)=0
+\end{eqnarray}
+
+左辺が恒等的に0でなくてはいけないのです。$C(x)$の項は、式\ref{eq:second-order-lambda}より、$C(x)$の係数が0になります。
+
+次に$\dd C(x)/\dd x$の項を考えますが、ここで重解$\lambda$を$a$を使って表しましょう。判別式の条件式\ref{eq:second-order-same}と$\lambda$の特性方程式\ref{eq:second-order-lambda}より、
+
+\begin{eqnarray}
+    \lambda=-\frac{1}{2}a
+    \label{eq:second-order-lambda-same}
+\end{eqnarray}
+
+\noindent
+です。よって、
+
+\begin{eqnarray}
+    (2\lambda+a)\frac{\dd}{\dd x}C(x)=0
+\end{eqnarray}
+
+\noindent
+です(左辺第一項が0になります)。
+
+残ったのは$\dd C(x)/\dd x$だけですね。よって、
+
+\begin{eqnarray}
+    \frac{\dd^2}{\dd x^2}C(x)=0
+\end{eqnarray}
+
+\noindent
+が成り立ちます。
+
+定数変化法の根本的な条件$C(x)\neq0$を考えれば、
+
+\begin{eqnarray}
+    C(x)=kx
+\end{eqnarray}
+
+ということが導けます。ここでは定数$k$は何でも良いので、1として、
+
+\begin{eqnarray}
+    C(x)=x
+\end{eqnarray}
+
+\noindent
+としておきましょう。
+
+元の話に戻ると、結局2つの線形独立な基本解は式\ref{eq:second-order-const-y3}に$C(x)=x$を代入すれば、
+
+\begin{eqnarray}
+    y_2&=&e^{\lambda_2 x} \nonumber\\
+    y_3&=&xe^{\lambda_2 x}
+\end{eqnarray}
+
+\noindent
+となります。よって、一般解$y$は、
+
+\begin{eqnarray}
+    y=(c_2+c_3x)e^{\lambda_2 x}
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+
+
+\subsection{定数係数の二階非斉次線形微分方程式}
+\label{second-order-constant-change}
+
+非斉次なので、式\ref{eq:second-order-const}の右辺を$f(x)$とします。
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}+a\frac{\dd y}{\dd x}+by=f(x)
+    \label{eq:second-order-const-nhm}
+\end{eqnarray}
+
+方針としては、特殊解$y=y_1$を見つけ、$y=Y+y_1$と置換して$Y$を求めるのですが、今回は先に斉次式を解きます。斉次式
+
+\begin{eqnarray}
+    \frac{\dd^2Y}{\dd x^2}+a\frac{\dd Y}{\dd x}+by=0
+\end{eqnarray}
+
+\noindent
+の一般解$Y=C_2Y_2+C_3Y_3$を求めたとします。ここで定数変化法です。特殊解$y_1$もこの一般解と似ているだろうと仮定して、
+
+\begin{eqnarray}
+    y_1=c_2(x)Y_2+c_3(x)Y_3
+\end{eqnarray}
+
+と置いてみます。では実際に微分方程式に代入するために、$\dd y_1/\dd x$と$\dd^2 y_2/\dd x^2$を求めてみましょう。
+
+\begin{eqnarray}
+    \frac{\dd y_1}{\dd x}=\frac{\dd}{\dd x}c_2(x)Y_2+c_2(x)\frac{\dd Y_2}{\dd x}+\frac{\dd}{\dd x}c_3(x)Y_3+c_3(x)\frac{\dd Y_3}{\dd x}
+\end{eqnarray}
+
+ちょっと待ってください。これをもう一度微分したい気持ちにはなれませんね。ということで都合よくこんな条件を付け加えてみましょう。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}c_2(x)Y_2+\frac{\dd}{\dd x}c_3(x)Y_3=0
+    \label{eq:second-order-const-nhm-terms}
+\end{eqnarray}
+
+どんな都合の良い条件を加えようと、とにかく特殊解が見つかれば良いのです。今回の微分方程式だとこのようにして特殊解を見つけられます。
+
+この条件によって、
+
+\begin{eqnarray}
+    \frac{\dd y_1}{\dd x}&=&c_2(x)\frac{\dd Y_2}{\dd x}+c_3(x)\frac{\dd Y_3}{\dd x} \\
+    \frac{\dd^2 y_1}{\dd x^2}&=&\pqty{\frac{\dd}{\dd x}c_2(x)}\frac{\dd Y_2}{\dd x}+c_2(x)\frac{\dd^2 Y_2}{\dd x^2}+\pqty{\frac{\dd}{\dd x}c_3(x)}\frac{\dd Y_3}{\dd x}+c_3(x)\frac{\dd^2 Y_3}{\dd x^2}
+\end{eqnarray}
+
+\noindent
+となります。では元の微分方程式\ref{eq:second-order-const-nhm}に代入してみましょう。
+
+\begin{eqnarray}
+    \pqty{\frac{\dd}{\dd x}c_2(x)}\frac{\dd Y_2}{\dd x}+c_2(x)\frac{\dd^2 Y_2}{\dd x^2}+\pqty{\frac{\dd}{\dd x}c_3(x)}\frac{\dd Y_3}{\dd x}+c_3(x)\frac{\dd^2 Y_3}{\dd x^2} \nonumber \\
+    +a\pqty{c_2(x)\frac{\dd Y_2}{\dd x}+c_3(x)\frac{\dd Y_3}{\dd x}}+b(c_2(x)Y_2+c_3(x)Y_3)=f(x)
+\end{eqnarray}
+
+2行に渡る式になってしまいましたが怯まずに整理しましょう。
+
+\begin{eqnarray}
+    c_2(x)\pqty{\frac{\dd^2 Y_2}{\dd x^2}+a\frac{\dd Y_2}{\dd x}+bY_2}+c_3(x)\pqty{\frac{\dd^2 Y_3}{\dd x^2}+a\frac{\dd Y_3}{\dd x}+bY_3} \nonumber \\
+    +\pqty{\frac{\dd}{\dd x}c_2(x)}\frac{\dd Y_2}{\dd x}+\pqty{\frac{\dd}{\dd x}c_3(x)}\frac{\dd Y_3}{\dd x}=f(x)
+\end{eqnarray}
+
+$Y_1,Y_2$はそれぞれ斉次方程式の解だったので、上段がばっさり0になり、
+
+\begin{eqnarray}
+    \pqty{\frac{\dd}{\dd x}c_2(x)}\frac{\dd Y_2}{\dd x}+\pqty{\frac{\dd}{\dd x}c_3(x)}\frac{\dd Y_3}{\dd x}=f(x)
+\end{eqnarray}
+
+となります。これとさきほどの都合よくつけた成約条件式\ref{eq:second-order-const-nhm-terms}をあわせて連立方程式を解きます。その際、行列を使うとこんな風に書けます。
+
+\begin{eqnarray}
+    \left(
+        \begin{array}{cc}
+            Y_2 & Y_3 \\
+            \frac{\dd Y_2}{\dd x} & \frac{\dd Y_3}{\dd x}
+        \end{array}
+    \right)
+    \left(
+        \begin{array}{c}
+            \frac{\dd}{\dd x}c_2(x) \\
+            \frac{\dd}{\dd x}c_3(x)
+        \end{array}
+    \right)
+    =
+    \left(
+        \begin{array}{c}
+            0 \\
+            f(x)
+        \end{array}
+    \right)
+\end{eqnarray}
+
+随分すっきりしましたね。この行列の両辺に左から左辺第一項の行列($W$とします)の逆行列を掛ければ答えが求まりそうです。逆行列の存在確認のために行列$W$の行列式が0でないことを確認しなくてはならないのですが、実はこの行列$W$には「ロンスキー行列」という名前がついていて、この場合だと$Y_2$と$Y_3$が線形独立であれば行列式は$x$の値によらず絶対に0にはなりません\footnote{ロンスキー行列は一般的に$n$個の関数とその微分が入ったものでもそれぞれが全て線形独立であれば$\det(W)\neq0$です。}。では逆行列を両辺に左から掛けましょう。
+
+\begin{eqnarray}
+    \left(
+        \begin{array}{c}
+            \frac{\dd}{\dd x}c_2(x) \\
+            \frac{\dd}{\dd x}c_3(x)
+        \end{array}
+    \right)
+    =
+    \frac{1}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}
+    \left(
+        \begin{array}{cc}
+            \frac{\dd Y_3}{\dd x} &-Y_3 \\
+            -\frac{\dd Y_2}{\dd x} &Y_2 \\
+        \end{array}
+    \right)
+    \left(
+        \begin{array}{c}
+            0 \\
+            f(x)
+        \end{array}
+    \right)
+\end{eqnarray}
+
+これを$\dd c_2(x)/\dd x$と$\dd c_3(x)/\dd x$のそれぞれについて整理すると、
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}c_2(x)&=&-\frac{Y_3f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}} \\
+    \frac{\dd}{\dd x}c_3(x)&=&\frac{Y_2f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}
+\end{eqnarray}
+
+\noindent
+となります。これでやっと$c_2(x)$と$c_3(x)$がわかります。それらは、
+
+\begin{eqnarray}
+    c_2(x)&=&-\int\frac{Y_3f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}\dd x \\
+    c_3(x)&=&\int\frac{Y_2f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}\dd x
+\end{eqnarray}
+
+\noindent
+です。今は特殊解を求めているので積分定数は考えなくて大丈夫です。
+
+これで特殊解が求まりました。よって全体の解は、
+
+\begin{eqnarray}
+    y=-Y_2\int\frac{Y_3f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}\dd x+Y_3\int\frac{Y_2f(x)}{Y_2\frac{\dd Y_3}{\dd x}-Y_3\frac{\dd Y_2}{\dd x}}\dd x+C_2Y_2+C_3Y_3
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+
+
+\subsection{標準形}
+\label{basic}
+標準形の微分方程式とは、定数$k$を使って
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}+ky=0
+    \label{eq:basic}
+\end{eqnarray}
+
+\noindent
+と書ける微分方程式のことです。これは比較的簡単に解くことができます。これを解くのは後に回して、実は一般的な二階斉次線形微分方程式を標準形に帰着することができます。
+
+\begin{eqnarray}
+    \frac{\dd^2 y}{\dd x^2}+P(x)\frac{\dd y}{\dd x}+Q(x)y=0
+    \label{eq:second-order-normal}
+\end{eqnarray}
+
+\noindent
+について、
+
+\begin{eqnarray}
+    y=u(x)e^{-\frac{1}{2}\int P(x)\dd x}
+\end{eqnarray}
+
+\noindent
+と置いてみましょう。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}&=&\pqty{\frac{\dd}{\dd x}u(x)-\frac{1}{2}P(x)u(x)}e^{-\frac{1}{2}\int P(x)\dd x} \\
+    \frac{\dd^2 y}{\dd x^2}&=&\pqty{\frac{\dd^2}{\dd x^2}u(x)-\frac{1}{2}u(x)\frac{\dd}{\dd x}P(x)-\frac{1}{2}P(x)\frac{\dd}{\dd x}u(x)}e^{-\frac{1}{2}\int P(x)\dd x} \nonumber \\
+    &-&\frac{1}{2}\pqty{\frac{\dd}{\dd x}u(x)-\frac{1}{2}P(x)u(x)}P(x)e^{-\frac{1}{2}\int P(x)\dd x} \nonumber \\
+    &=&\pqty{\frac{\dd^2}{\dd x^2}u(x)-P(x)\frac{\dd}{\dd x}u(x)+\pqty{\frac{1}{4}P^2(x)-\frac{1}{2}\frac{\dd}{\dd x}P(x)}u(x)}e^{-\frac{1}{2}\int P(x)\dd x}
+\end{eqnarray}
+
+これを元の微分方程式\ref{eq:second-order-normal}に代入してみます。
+
+\begin{eqnarray}
+    \pqty{\frac{\dd^2}{\dd x^2}u(x)-P(x)\frac{\dd}{\dd x}u(x)+\pqty{\frac{1}{4}P^2(x)-\frac{1}{2}\frac{\dd}{\dd x}P(x)}u(x)}e^{-\frac{1}{2}\int P(x)\dd x} \nonumber \\
+    +P(x)\pqty{\frac{\dd}{\dd x}u(x)-\frac{1}{2}P(x)u(x)}e^{-\frac{1}{2}\int P(x)\dd x}+Q(x)u(x)e^{-\frac{1}{2}\int P(x)\dd x}=0
+\end{eqnarray}
+
+整理すると、
+
+\begin{eqnarray}
+    \frac{\dd^2}{\dd x^2}u(x)+\pqty{Q(x)-\frac{1}{2}\frac{\dd}{\dd x}P(x)-\frac{1}{4}P^2(x)}u(x)=0
+\end{eqnarray}
+
+\noindent
+となります。これで一般的な二階斉次線形微分方程式が標準形になりました。
+
+では実際に標準形の微分方程式\ref{eq:basic}を解いていきましょう。$k$の値によって場合分けができます。
+
+\subsubsection{$k=0$の場合}
+微分方程式\ref{eq:basic}を書き直すと
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}=0
+\end{eqnarray}
+
+\noindent
+となるので、$y$の最大の次数は1です。よって、２つの線形独立な基本解を
+
+\begin{eqnarray}
+    y_2=x \\
+    y_3=1
+\end{eqnarray}
+
+\noindent
+と置くことができます。よって、これらの重ね合わせを一般解として、一般解は
+
+\begin{eqnarray}
+    y=c_2x+c_3
+\end{eqnarray}
+
+\noindent
+です。
+
+\subsubsection{$k<0$の場合}
+
+微分方程式\ref{eq:basic}を書き直すと、
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}=-ky
+\end{eqnarray}
+
+\noindent
+となりますが、$k$が負なので右辺の係数は正になります。
+
+これは定数係数の二階斉次線形微分方程式ですから、解に$y=e^{\lambda x}$を仮定すると、
+
+\begin{eqnarray}
+    \lambda^2e^{\lambda x}=-ke^{\lambda x} \\
+    \lambda=\pm \sqrt{-k}
+\end{eqnarray}
+
+\noindent
+となり、2つの$\lambda$が現れます。これで基本解が2つ作れそうです。基本解$y_2,y_3$は、
+
+\begin{eqnarray}
+    y_2&=&e^{\sqrt{-k}x} \\
+    y_3&=&e^{-\sqrt{-k}x}
+\end{eqnarray}
+
+\noindent
+ですので、一般解$y$は
+
+\begin{eqnarray}
+    y=c_2e^{\sqrt{-k}x}+c_3e^{-\sqrt{-k}x}
+\end{eqnarray}
+
+\noindent
+です。
+
+\subsubsection{$k>0$の場合}
+微分方程式\ref{eq:basic}を書き直すと、
+
+\begin{eqnarray}
+    \frac{\dd^2y}{\dd x^2}=-ky
+\end{eqnarray}
+
+\noindent
+となります。今回は$k>0$なので右辺の係数は負です。これは見慣れた単振動型の微分方程式ですが一度真面目に解いてみましょう。
+
+これは定数係数の二階斉次線形微分方程式ですから、先ほどと同じように解に$y=e^{\lambda x}$を仮定すると、
+
+\begin{eqnarray}
+    \lambda^2e^{\lambda x}=-ke^{\lambda x} \\
+    \lambda=\pm i\sqrt{k}
+\end{eqnarray}
+
+\noindent
+となります。先ほどと同じく2つの$\lambda$が現れたので、線形独立な基本解が2つ作れます。基本解$y_2,y_3$は、
+
+\begin{eqnarray}
+    y_2&=&e^{i\sqrt{k}x} \\
+    y_3&=&e^{-i\sqrt{k}x}
+\end{eqnarray}
+
+\noindent
+ですので、一般解$y$は
+
+\begin{eqnarray}
+    y=c_2e^{i\sqrt{k}x}+c_3e^{-i\sqrt{k}x}
+\end{eqnarray}
+
+\noindent
+です。オイラーの公式
+
+\begin{eqnarray}
+    e^{i\theta}=\cos\theta+i\sin\theta
+\end{eqnarray}
+
+を使えば、
+
+\begin{eqnarray}
+    y&=&c_2(\cos\sqrt{k}x+i\sin\sqrt{k}x)+c_3(\cos\sqrt{k}x-i\sin\sqrt{k}x) \nonumber \\
+    &=&(c_2+c_3)\cos\sqrt{k}x+i(c_2-c_3)\sin\sqrt{k}x
+\end{eqnarray}
+
+となり、$y$が物理量など、解が実数のみを取るという成約があれば、
+
+\begin{eqnarray}
+    c_1=\frac{A_1+iA_2}{2} \\
+    c_2=\frac{A_1-iA_2}{2}
+\end{eqnarray}
+
+\noindent
+として、
+
+\begin{eqnarray}
+    y=A_1\cos\sqrt{k}x+A_2\sin\sqrt{k}x
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+
+
+
+\section{オイラーの微分方程式}
+\label{euler}
+オイラーの微分方程式は、
+
+\begin{eqnarray}
+    x^2\frac{\dd^2 y}{\dd x^2}+ax\frac{\dd y}{\dd x}+by=0
+    \label{eq:euler}
+\end{eqnarray}
+
+\noindent
+の形をしたものです。解に$y=x^\lambda$を仮定すると、
+
+\begin{eqnarray}
+    x^2\lambda(\lambda-1)x^{\lambda-2}+ax\lambda x^{\lambda-1}+bx^\lambda&=&0 \\
+    \lambda(\lambda-1)+a\lambda+b&=&0 \nonumber \\
+    \lambda^2+(a-1)\lambda+b&=&0
+    \label{eq:euler-characteristic}
+\end{eqnarray}
+
+\noindent
+と、すっきりした形になります。二次方程式が出てきたのでまた決まって判別式で場合分けをします。
+
+\subsubsection{判別式が0でない場合}
+判別式に関する条件は
+
+\begin{eqnarray}
+    (a-1)^2-4b\neq0
+\end{eqnarray}
+
+\noindent
+です。この場合は$\lambda$について2つの解$\lambda_2$と　$\lambda_3$が求まるため、これらを使った基本解を重ね合わせて
+
+\begin{eqnarray}
+    y=c_2x^{\lambda_2}+c_3x^{\lambda_3}
+\end{eqnarray}
+
+\noindent
+が解です。
+
+\subsubsection{判別式が0の場合}
+判別式に関する条件は
+
+\begin{eqnarray}
+    (a-1)^2-4b=0
+\end{eqnarray}
+
+です。この場合、$\lambda$は1つの重解$\lambda_2$のみを持ちます。2つの基本解がなくてはいけないのに困りましたね。こんなときには定数変化法です。2つの基本解を
+
+\begin{eqnarray}
+    y_2&=&x^{\lambda_2} \\
+    y_3&=&c(x)x^{\lambda_2}
+\end{eqnarray}
+
+\noindent
+と置きます。まず$y_3$の微分したものを求めておきます。
+
+\begin{eqnarray}
+    \frac{\dd y_3}{\dd x}&=&x^{\lambda_2}\frac{\dd}{\dd x}c(x)+\lambda_2x^{\lambda_2-1}c(x) \\
+    \frac{\dd^2 y_3}{\dd x^2}&=&x^{\lambda_2}\frac{\dd^2}{\dd x^2}c(x)+2\lambda_2x^{\lambda_2-1}\frac{\dd}{\dd x}c(x)+\lambda_2(\lambda_2-1)x^{\lambda_2-2}c(x)
+\end{eqnarray}
+
+では元の微分方程式\ref{eq:euler}に代入してみましょう。
+
+\begin{eqnarray}
+    x^2\pqty{x^{\lambda_2}\frac{\dd^2}{\dd x^2}c(x)+2\lambda_2x^{\lambda_2-1}\frac{\dd}{\dd x}c(x)+\lambda_2(\lambda_2-1)x^{\lambda_2-2}c(x)} \nonumber \\
+    +ax\pqty{x^{\lambda_2}\frac{\dd}{\dd x}c(x)+\lambda_2x^{\lambda_2-1}c(x)}+bc(x)x^{\lambda_2}=0
+\end{eqnarray}
+
+また2行になってしまいましたが頑張って整理します。定数変化法は総じて計算が煩雑になるので、できればエスパーで求めたいものです…。
+
+\begin{eqnarray}
+    x^{\lambda_2+2}\frac{\dd^2}{\dd x^2}c(x)+(2\lambda_2+a)x^{\lambda_2+1}\frac{\dd}{\dd x}c(x)+(\lambda_2^2+(a-1)\lambda_2+b)x^{\lambda_2}c(x)=0
+\end{eqnarray}
+
+なんだか\ref{second-order-const}節で見た展開ですが、まず$c(x)$の項の係数が式\ref{eq:euler-characteristic}より0になります。そして、実際に$\lambda_2$を$a$を使った式で求めてみると、
+
+\begin{eqnarray}
+    \lambda_2=\frac{1-a}{2}
+\end{eqnarray}
+
+\noindent
+となるので、式を整理すると、
+
+\begin{eqnarray}
+    x^{\lambda_2+2}\frac{\dd^2}{\dd x^2}c(x)+x^{\lambda_2+1}\frac{\dd}{\dd x}c(x)=0 \\
+    \frac{\dd^2}{\dd x^2}c(x)=-\frac{1}{x}\frac{\dd}{\dd x}c(x)
+\end{eqnarray}
+
+\noindent
+となります。この微分方程式は比較的簡単に解けそうです。まず$\dd c(x)/\dd x=c'(x)$を求めることを考えると、これは変数分離形です。
+
+\begin{eqnarray}
+    \frac{\dd}{\dd x}c'(x)&=&-\frac{1}{x}c'(x) \\
+    \int \frac{1}{c'(x)}\dd c'(x)&=&-\int\frac{1}{x}\dd x \nonumber \\
+    \ln|c'(x)|&=&-\ln|x| \nonumber \\
+    c'(x)&=&\pm\frac{1}{x}
+\end{eqnarray}
+
+\noindent
+これを$x$で積分すれば、
+
+\begin{eqnarray}
+    c(x)=\ln|x|
+\end{eqnarray}
+
+\noindent
+このように$c(x)$が求まります。よって2つの線形独立な基本解は、
+
+\begin{eqnarray}
+    y_2&=&x^{\lambda_2} \nonumber \\
+    y_3&=&x^{\lambda_2}\ln|x|
+\end{eqnarray}
+
+一般解は、
+
+\begin{eqnarray}
+    y=x^{\lambda_2}(c_2+c_3\ln|x|)
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+
+
+
+
+\section{定数係数連立微分方程式}
+\label{multiple}
+こんな微分方程式が与えられたとします。
+
+\begin{eqnarray}
+y_1&=&y \nonumber \\
+\frac{\dd y_1}{\dd x}&=&y_2 \nonumber \\
+\frac{\dd y_2}{\dd x}&=&y_3 \nonumber \\
+\vdots \nonumber\\
+\frac{\dd y_n}{\dd x}&=&f(x,y_1,...,y_{n-1})
+\end{eqnarray}
+
+これを行列を使った式にしてみましょう。
+
+\begin{eqnarray}
+    \boldsymbol{y}&=&(y_1,y_2,...,y_n) \\
+    A&=&\pqty{\begin{array}{ccc}
+        a_{1\ 1} & \hdots & a_{1\ n} \\
+        \vdots & \ddots & \vdots \\
+        a_{n\ 1} & \hdots & a_{n\ n}
+    \end{array}}
+\end{eqnarray}
+
+\noindent
+を導入して、行列$A$の要素を適当に決めると微分方程式が
+
+\begin{eqnarray}
+    \frac{\dd \boldsymbol{y}}{\dd x}=A\boldsymbol{y}
+    \label{eq:multiple-y}
+\end{eqnarray}
+
+\noindent
+と表せます。この$\boldsymbol{y}$がベクトルではなかった場合は、解が何になったでしょうか。$y=e^{\lambda x}$でしたね。今回は$\boldsymbol{c}$を任意定数で構成された定ベクトルとして、
+
+\begin{eqnarray}
+    \boldsymbol{y}=\boldsymbol{c}e^{A x}
+\end{eqnarray}
+
+\noindent
+と解を置いてみましょう。
+
+行列$A$の$n$個の固有値を$\lambda_1,\lambda_2,\dots,\lambda_n$、固有ベクトルを$\boldsymbol{p}_1,\boldsymbol{p}_2,\dots,\boldsymbol{p}_n$とすると、解は
+
+\begin{eqnarray}
+    \boldsymbol{y}=c_1e^{\lambda_1 x}\boldsymbol{p}_1+c_2e^{\lambda_2 x}\boldsymbol{p}_2+\dots+c_ne^{\lambda_n x}\boldsymbol{p}_n
+\end{eqnarray}
+
+\noindent
+です。
+
+
+
+
+
+
+\section{級数展開法}
+\label{expansion}
+微分方程式の解として級数解が求まる場合があります。与えられた微分方程式に
+
+\begin{eqnarray}
+    y=\sum_{n=0}^\infty c_n(x-a)^n
+\end{eqnarray}
+
+\noindent
+を仮定して代入します。テイラー展開の形ですね。例として一階の微分方程式\ref{eq:first-order}
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}+P(x)y+Q(x)=0 \nonumber
+\end{eqnarray}
+
+\noindent
+を考えると、
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty nc_n(x-a)^{n-1}+P\pqty{\sum_{n=0}^\infty c_n(x-a)^n}+Q(x)=0
+\end{eqnarray}
+
+\noindent
+となり、$x$の次数に注目して両辺の係数を比較することで$i$番目の$c_i$が求まる場合があります。この方法を整級数展開法と言います。
+
+「求まる場合がある」と書いたのは、例えば0でない定数$\alpha$を使って
+
+\begin{eqnarray}
+c_i=c_i+\alpha
+\end{eqnarray}
+
+\noindent
+となるなど、$c_i$が求まらない場合があるのです。この場合は求める関数$y$が$x=a$周りでテイラー展開できません。
+
+具体的な級数解の求め方は本節の小節で紹介します。
+
+
+
+
+
+
+
+
+\subsection{正則点と特異点・フロベニウスの方法}
+\label{regular-singular}
+二階斉次線形微分方程式
+
+\begin{eqnarray}
+    \frac{\dd^2 y}{\dd x^2}+P(x)\frac{\dd y}{\dd x}+Q(x)y=0
+\end{eqnarray}
+
+\noindent
+について、場合分けをします。
+
+\begin{itemize}
+    \item $P(x),Q(x)$が$x=a$でなめらか: $x=a$は正則点
+    \item 上でなく、$(x-a)P(x),(x-a)^2Q(x)$が$x=a$でなめらか: $x=a$は確定特異点
+    \item それ以外: $x=a$は不確定特異点
+\end{itemize}
+
+正則点周りの展開は整級数展開で答えが得られます。
+
+確定特異点周りは$c_0\neq0$として、解を
+
+\begin{eqnarray}
+    y&=&\sum_{n=0}^\infty c_n(x-a)^{n+\lambda}
+\end{eqnarray}
+
+\noindent
+と置きます。微分すると、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}&=&\sum_{n=0}^\infty c_n(n+\lambda)(x-a)^{n+\lambda-1} \\
+    \frac{\dd^2 y}{\dd x^2}&=&\sum_{n=0}^\infty c_n(n+\lambda)(n+\lambda-1)(x-a)^{n+\lambda-2}
+\end{eqnarray}
+
+\noindent
+です。また、$P(x)$と$Q(x)$について、
+
+\begin{eqnarray}
+    (x-a)P(x)=\sum_{n=0}^\infty p_n(x-a)^n \\
+    (x-a)^2Q(x)=\sum_{n=0}^\infty q_n(x-a)^n
+\end{eqnarray}
+
+\noindent
+と展開することにします。すると、与えられた微分方程式は
+
+\begin{eqnarray}
+    (x-a)^2\frac{\dd^2 y}{\dd x^2}+(x-a)P(x)\cdot(x-a)\frac{\dd y}{\dd x}+(x-a)^2Q(x)y=0
+\end{eqnarray}
+
+\noindent
+と書き直せます。
+
+これらを書き直した微分方程式に代入して$x^\lambda$の項の係数に注目すると、
+
+\begin{eqnarray}
+    c_0\lambda(\lambda-1)+p_0\lambda c_0+q_0c_0=0 \\
+    \lambda(\lambda-1)+p_0\lambda+q_0=0
+\end{eqnarray}
+
+\noindent
+という式が出てきます。これを「決定方程式」と言います。なお、微分方程式の右辺が0より決定方程式の右辺は0になります。
+
+決定方程式の解$\lambda_1,\lambda_2$について考えてみましょう。このとき、
+
+\begin{itemize}
+    \item $\lambda_1-\lambda_2\in \mathbb{Z}$: $\mathrm{max}(\lambda_1,\lambda_2)$に対応する級数解が求まります。
+    \item $\lambda_1-\lambda_2\notin \mathbb{Z}$: $\lambda_1,\lambda_2$の両方に対応する級数解が求まります。
+\end{itemize}
+
+この方法をフロベニウスの方法と言います。
+
+
+
+
+
+
+
+
+\subsection{エルミートの微分方程式}
+\label{hermite}
+エルミートの微分方程式は、
+
+\begin{eqnarray}
+    \frac{\dd^2 y}{\dd x^2}-2x\frac{\dd y}{\dd x}+2\nu y=0
+\end{eqnarray}
+
+\noindent
+の形をしたものです。
+
+正則点$x=0$で級数展開してみます。
+
+\begin{eqnarray}
+    y=\sum_{n=0}^\infty c_nx^n
+\end{eqnarray}
+
+微分すると、
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}&=&\sum_{n=0}^\infty c_n nx^{n-1} \\
+    \frac{\dd^2 y}{\dd x^2}&=&\sum_{n=0}^\infty c_n n(n-1)x^{n-2}
+\end{eqnarray}
+
+\nonumber
+となります。これらを代入してみましょう。
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty c_n n(n-1)x^{n-2}-2\sum_{n=0}^\infty c_n nx^n+2\nu \sum_{n=0}^\infty c_nx^n&=&0 \\
+    \sum_{n=-2}^\infty c_{n+2}(n+2)(n+1)x^n-\sum_{n=0}^\infty 2c_n(n-\nu)x^n&=&0
+    \label{eq:hermite-1}
+\end{eqnarray}
+
+ここで式\ref{eq:hermite-1}の左辺第一項を見てみましょう。$n$の回る範囲をずらして書いたのですが、なんと$n=-1,-2$のときは$(n+2)(n+1)$のどちらかが0になるので$\sum$の中も0になりまず。よって、この式は
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty \pqty{c_{n+2}(n+2)(n+1)-2c_n(n-\nu)}x^n=0
+\end{eqnarray}
+
+\noindent
+とすっきり書くことができます。右辺が0なので全ての$n$について$\sum$の中が0になります。よって、
+
+\begin{eqnarray}
+    c_{n+2}(n+2)(n+1)-2c_n(n-\nu)=0 \\
+    c_{n+2}=\frac{2(n-\nu)}{(n+1)(n+2)}c_n
+    \label{eq:hermite-2}
+\end{eqnarray}
+
+\noindent
+という漸化式が立ちます。$c_0$と$c_1$を任意定数(微分方程式の階数である2つあります)としてこの微分方程式が解けました。
+
+ところで、漸化式\ref{eq:hermite-2}の分子を見ると、$\nu\in\mathbb{N}$(0を含む)のとき、$n-\nu$がどこかで0になるので、そこで$c_n$が0になることがわかると思います。漸化式は$c_0$始まりのものと$c_1$始まりのものの2つがあり、どちらか1つが途中で0になります。
+
+具体的に書くと、$c_{\nu+2}$以降の、$n$と$\nu$の偶奇の同じ$c_n$が0になります。よって、解の関数は$\nu+1$の偶/奇によって偶関数/奇関数となります。
+
+\if0
+
+このとき、途中で止まる方の多項式を一般的に書いた
+
+\begin{eqnarray}
+H_n(x)=\sum_{m=0}^{\lfloor n/2\rfloor}\frac{(-1)^m n!}{m!(n-2m)!}(2x)^{n-2m}
+\end{eqnarray}
+
+\noindent
+をエルミート多項式と言います。
+
+\fi
+
+
+
+
+
+
+
+
+
+\subsection{ルジャンドルの微分方程式}
+\label{legendre}
+ルジャンドルの微分方程式は
+
+\begin{eqnarray}
+(1-x^2)\frac{\dd^2 y}{\dd x^2}-2x\frac{\dd y}{\dd x}+\nu(\nu+1)y=0
+\end{eqnarray}
+
+\noindent
+の形をした微分方程式です。
+
+正則点$x=0$で\ref{hermite}節と同じように展開すると、
+
+\begin{eqnarray}
+    (1-x^2)\sum_{n=0}^\infty c_n n(n-1)x^{n-2}-2x\sum_{n=0}^\infty c_n nx^{n-1}+\nu(\nu+1)\sum_{n=0}^\infty c_nx^n&=&0 \\
+    \sum_{n=0}^\infty c_n n(n-1)x^{n-2}-\sum_{n=0}^\infty c_n\pqty{n(n+1)-\nu(\nu+1)}x^n&=&0
+\end{eqnarray}
+
+左辺第一項について、$n$をずらしましょう。
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty c_n n(n-1)x^{n-2}&=&\sum_{n=-2}^\infty c_{n+2} (n+2)(n+1)x^n \\
+    &=&\sum_{n=0}^\infty c_{n+2} (n+2)(n+1)x^n
+\end{eqnarray}
+
+ではまとめてみます。
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty \pqty{c_{n+2}(n+2)(n+1)-c_n(n(n+1)-\nu(\nu+1))}x^n=0
+\end{eqnarray}
+
+右辺が0なので、
+
+\begin{eqnarray}
+    c_{n+2}=\frac{n(n+1)-\nu(\nu+1)}{(n+1)(n+2)}c_n
+\end{eqnarray}
+
+\noindent
+です。これもまた$\nu\in\mathbb{N}$(0を含む)の場合は$c_{\nu+2}$から先の$n$と$\nu$の偶奇の同じ$c_n$が0になります。よって、解の関数は$\nu+1$の偶/奇によって偶関数/奇関数となります。
+
+
+
+
+
+
+
+
+\subsection{ベッセルの微分方程式}
+\label{vessel}
+ベッセルの微分方程式は
+
+\begin{eqnarray}
+    \frac{\dd^2 y}{\dd x^2}+\frac{1}{x}\frac{\dd y}{\dd x}+\pqty{1-\frac{\nu^2}{x^2}}y=0
+\end{eqnarray}
+
+\noindent
+の形をしたものです。これは$x=0$が確定特異点ですので、$c_0\neq0$を条件に
+
+\begin{eqnarray}
+y=x^\lambda\sum_{n=0}^\infty c_nx^n
+\end{eqnarray}
+
+\noindent
+として級数解を探します。決定方程式
+
+\begin{eqnarray}
+    \lambda(\lambda-1)+\lambda-\nu^2=0
+\end{eqnarray}
+
+\noindent
+より、
+
+\begin{eqnarray}
+    \lambda=\pm\nu
+\end{eqnarray}
+
+\noindent
+とわかります。
+
+では解の形を微分方程式(全体に$x^2$を掛けたもの)に代入してみましょう。
+
+\begin{eqnarray}
+    \sum_{n=0}^\infty c_n(n\pm\nu)(n\pm\nu-1)x^{n\pm\nu}+\sum_{n=0}^\infty c_n(n\pm\nu)x^{n\pm\nu}+\sum_{n=0}^\infty c_nx^{n\pm\nu+2}-\nu^2\sum_{n=0}^\infty c_nx^{n\pm\nu}=0 \\
+    \sum_{n=0}^\infty c_n\pqty{(n\pm\nu)^2-\nu^2}x^{n\pm\nu}+\sum_{n=2}^\infty c_{n-2}x^{n\pm\nu}=0 \nonumber \\
+    c_0\pqty{\nu^2-\nu^2}x^{\pm\nu}+c_1\pqty{1\pm2\nu}x^{1\pm\nu}+\sum_{n=2}^\infty \pqty{c_n(n^2\pm2n\nu)+c_{n-2}}x^{n\pm\nu}=0
+\end{eqnarray}
+
+$n=0,1$の場合のみ分けて、$\sum$の始まりを2に揃えました。
+
+このとき、
+
+\begin{itemize}
+    \item $n=1$のとき$(\pm2\nu+1)c_1=0$であるから、$\nu=\pm1/2$であれば$c_1=0$
+    \item $n\geq2$のとき$(n\pm\nu)^2-\nu^2\neq0$であれば
+    \begin{eqnarray}
+    c_n=\frac{1}{\pm2\nu n-n^2}c_{n-2}
+    \end{eqnarray}
+\end{itemize}
+
+として級数解が求まります。
+
+
+\clearpage
