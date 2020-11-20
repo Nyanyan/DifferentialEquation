@@ -1270,6 +1270,45 @@ $Y_1,Y_2$はそれぞれ斉次方程式の解だったので、上段がばっ�
 
 
 
+\section{演算子の因数分解}
+\label{factorization}
+$a,b$を定数として微分方程式
+
+\begin{eqnarray}
+    \pqty{\frac{\dd^2}{\dd x^2}+(a+b)\frac{\dd}{\dd x}+ab}y=0
+\end{eqnarray}
+
+\noindent
+を考えてみましょう。演算子をまとめてしまっていますが、定数係数の二階微分方程式です。
+
+この演算子を「因数分解」してしまいましょう。
+
+\begin{eqnarray}
+    \pqty{\frac{\dd}{\dd x}+a}\pqty{\frac{\dd}{\dd x}+b}y=0
+\end{eqnarray}
+
+これをこんな風に見てしまいます。
+
+\begin{eqnarray}
+    \frac{\dd y}{\dd x}+ay=0\ \mbox{または}\ \frac{\dd y}{\dd x}+by=0
+\end{eqnarray}
+
+なんと二階の微分方程式が一階の微分方程式になってしまいました。これらの解は変数分離形として見つけられ、この2つの解の線形結合
+
+\begin{eqnarray}
+    y=c_1e^{-ax}+c_2e^{-bx}
+\end{eqnarray}
+
+\noindent
+が解となります。
+
+
+
+
+
+
+
+
 
 \section{オイラーの微分方程式}
 \label{euler}
@@ -1737,7 +1776,7 @@ y=x^\lambda\sum_{n=0}^\infty c_nx^n
 \begin{eqnarray}
     \sum_{n=0}^\infty c_n(n\pm\nu)(n\pm\nu-1)x^{n\pm\nu}+\sum_{n=0}^\infty c_n(n\pm\nu)x^{n\pm\nu}+\sum_{n=0}^\infty c_nx^{n\pm\nu+2}-\nu^2\sum_{n=0}^\infty c_nx^{n\pm\nu}=0 \\
     \sum_{n=0}^\infty c_n\pqty{(n\pm\nu)^2-\nu^2}x^{n\pm\nu}+\sum_{n=2}^\infty c_{n-2}x^{n\pm\nu}=0 \nonumber \\
-    c_0\pqty{\nu^2-\nu^2}x^{\pm\nu}+c_1\pqty{1\pm2\nu}x^{1\pm\nu}+\sum_{n=2}^\infty \pqty{c_n(n^2\pm2n\nu)+c_{n-2}}x^{n\pm\nu}=0
+    c_0\pqty{\nu^2-\nu^2}x^{\pm\nu}+c_1\pqty{1\pm2\nu}x^{1\pm\nu}+\sum_{n=2}^\infty \setcounter{equation}{214} \pqty{c_n(n^2\pm2n\nu)+c_{n-2}}x^{n\pm\nu}=0
 \end{eqnarray}
 
 $n=0,1$の場合のみ分けて、$\sum$の始まりを2に揃えました。
