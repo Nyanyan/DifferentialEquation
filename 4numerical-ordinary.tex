@@ -32,7 +32,7 @@
 $h$を十分小さい定数として、$y(x+h)$をテイラー展開します。
 
 \begin{eqnarray}
-    y(x+h)=y(x)+h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+\dots
+    y(x+h)=y(x)+h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+\cdots
     \label{eq:taylor}
 \end{eqnarray}
 
@@ -144,7 +144,7 @@ $h$の2乗以上の項を無視したので、局所誤差\footnote{一回の計
     &=&Y_i+h\frac{\dd}{\dd x}y(x_i)+\frac{h^2}{2}\frac{\dd^2}{\dd x^2}y(x_i) \setcounter{equation}{9}
 \end{eqnarray}
 
-テイラー展開式\ref{eq:taylor}と比べると、3次の項まで一致しています。よって局所誤差は$O(h^3)$です。よって、最終的に生じうる誤差は
+テイラー展開式\ref{eq:taylor}と比べると、2次の項まで一致しています。よって局所誤差は$O(h^3)$です。よって、最終的に生じうる誤差は
 
 \begin{eqnarray}
     O(h^3)\times \frac{x_N-x_0}{h}=O(h^2)
@@ -304,7 +304,7 @@ $n$段のルンゲ・クッタ法は、
 
 \begin{table}[htb]
 \begin{center}
-  \caption{$m$次のルンゲ・クッタ法に必要な最低の次数$n$}
+  \caption{$m$次のルンゲ・クッタ法に必要な最低の段数$n$}
   \begin{tabular}{c|cccccccc}
     $m$次 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
     \hline
@@ -331,20 +331,20 @@ $n$段のルンゲ・クッタ法は、
 これまでは一つの微分方程式を解いてきました、ここでは連立微分方程式を解きます。連立微分方程式は全て1階で\footnote{高階の微分方程式も連立微分方程式へと帰着できるため、実は構成する微分方程式は高階であっても良いのです。高階微分方程式は次節で扱います。}、$n$個あるとします。それぞれの微分方程式は
 
 \begin{eqnarray}
-    \frac{\dd y_i}{\dd x}=f_i(x,y_1,y_2,\dots,y_n)
+    \frac{\dd y_i}{\dd x}=f_i(x,y_1,y_2,\cdots,y_n)
 \end{eqnarray}
 
 \noindent
 と表せるとします。すると、ベクトル
 
 \begin{eqnarray}
-    \boldsymbol{y}&=&(y_1,y_2,\dots,y_n) \\
+    \boldsymbol{y}&=&(y_1,y_2,\cdots,y_n) \\
     \boldsymbol{f}(x,\boldsymbol{y})&=&\pqty{
     \begin{array}{c}
-        f_1(x,y_1,y_2,\dots,y_n) \\
-        f_2(x,y_1,y_2,\dots,y_n) \\
+        f_1(x,y_1,y_2,\cdots,y_n) \\
+        f_2(x,y_1,y_2,\cdots,y_n) \\
         \vdots \\
-        f_n(x,y_1,y_2,\dots,y_n)
+        f_n(x,y_1,y_2,\cdots,y_n)
     \end{array}
     }
 \end{eqnarray}
@@ -361,7 +361,7 @@ $n$段のルンゲ・クッタ法は、
 というように微分方程式をすっきり表すことができます。このとき、初期条件を$x=x_0$で、
 
 \begin{eqnarray}
-    \boldsymbol{Y_0}=(y_{1\ 0},y_{2\ 0},\dots,y_{n\ 0})
+    \boldsymbol{Y_0}=(y_{1\ 0},y_{2\ 0},\cdots,y_{n\ 0})
 \end{eqnarray}
 
 \noindent
@@ -397,7 +397,7 @@ $n$段のルンゲ・クッタ法は、
 高階微分方程式
 
 \begin{eqnarray}
-    \frac{\dd^ny}{\dd x^n}=f\pqty{x,y,\frac{\dd y}{\dd x},\frac{\dd^2 y}{\dd x^2},\dots,\frac{\dd^{n-1} y}{\dd x^{n-1}}}
+    \frac{\dd^ny}{\dd x^n}=f\pqty{x,y,\frac{\dd y}{\dd x},\frac{\dd^2 y}{\dd x^2},\cdots,\frac{\dd^{n-1} y}{\dd x^{n-1}}}
 \end{eqnarray}
 
 \noindent
@@ -434,7 +434,7 @@ $n$段のルンゲ・クッタ法は、
 が導かれ、元の微分方程式は
 
 \begin{eqnarray}
-    \frac{\dd y_n}{\dd x}=f(x,y_1,y_2,\dots,y_n)
+    \frac{\dd y_n}{\dd x}=f(x,y_1,y_2,\cdots,y_n)
     \label{eq:higher}
 \end{eqnarray}
 
@@ -571,14 +571,14 @@ $n$段のルンゲ・クッタ法は、
 
 \begin{eqnarray}
     \label{eq:advance-taylor}
-    y(x+h)=y(x)+h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\dots
+    y(x+h)=y(x)+h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\cdots
 \end{eqnarray}
 
 \noindent
 となります。この式を変形すると、
 
 \begin{eqnarray}
-    \frac{y(x+h)-y(x)}{h}=\frac{\dd}{\dd x}y(x)+\frac{h}{2!}\frac{\dd^2}{\dd x^2}y(x)+\dots
+    \frac{y(x+h)-y(x)}{h}=\frac{\dd}{\dd x}y(x)+\frac{h}{2!}\frac{\dd^2}{\dd x^2}y(x)+\cdots
 \end{eqnarray}
 
 \noindent
@@ -588,8 +588,8 @@ $n$段のルンゲ・クッタ法は、
 
 \begin{eqnarray}
     \label{eq:retreat-taylor}
-    y(x-h)&=&y(x)-h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)-\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\dots \\
-    \frac{y(x)-y(x-h)}{h}&=&\frac{\dd}{\dd x}y(x)-\frac{h}{2!}\frac{\dd^2}{\dd x^2}y(x)+\dots
+    y(x-h)&=&y(x)-h\frac{\dd}{\dd x}y(x)+\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)-\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\cdots \\
+    \frac{y(x)-y(x-h)}{h}&=&\frac{\dd}{\dd x}y(x)-\frac{h}{2!}\frac{\dd^2}{\dd x^2}y(x)+\cdots
 \end{eqnarray}
 
 \noindent
@@ -598,8 +598,8 @@ $n$段のルンゲ・クッタ法は、
 前進差分近似と後退差分近似よりも誤差の少ない方法を考えましょう。式\ref{eq:advance-taylor}と式\ref{eq:retreat-taylor}を辺々引くと、
 
 \begin{eqnarray}
-    y(x+h)-y(x-h)&=&2h\frac{\dd}{\dd x}y(x)+2\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\dots \\
-    \frac{y(x+h)-y(x-h)}{2h}&=&\frac{\dd}{\dd x}y(x)+\frac{h^2}{3!}\frac{\dd^3}{\dd x^3}y(x)+\dots
+    y(x+h)-y(x-h)&=&2h\frac{\dd}{\dd x}y(x)+2\frac{h^3}{3!}\frac{\dd^3}{\dd x^3}y(x)+\cdots \\
+    \frac{y(x+h)-y(x-h)}{2h}&=&\frac{\dd}{\dd x}y(x)+\frac{h^2}{3!}\frac{\dd^3}{\dd x^3}y(x)+\cdots
 \end{eqnarray}
 
 \noindent
@@ -619,7 +619,7 @@ $n$段のルンゲ・クッタ法は、
 次に二階の導関数を考えましょう。式\ref{eq:advance-taylor}と式\ref{eq:retreat-taylor}を辺々足すと、
 
 \begin{eqnarray}
-    y(x+h)+y(x-h)&=&2y(x)+2\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+2\frac{h^4}{4!}\frac{\dd^4}{\dd x^4}y(x)+\dots \\
+    y(x+h)+y(x-h)&=&2y(x)+2\frac{h^2}{2!}\frac{\dd^2}{\dd x^2}y(x)+2\frac{h^4}{4!}\frac{\dd^4}{\dd x^4}y(x)+\cdots \\
     \frac{y(x+h)-2y(x)+y(x-h)}{h^2}&=&\frac{\dd^2}{\dd x^2}y(x)+2\frac{h^2}{4!}\frac{\dd^4}{\dd x^4}y(x)
 \end{eqnarray}
 
@@ -723,7 +723,7 @@ $n$段のルンゲ・クッタ法は、
 
 \subsubsection{ヤコビ法}
 \label{jacobian}
-式\ref{eq:difference-liner-final}の行列は常に対角成分($b_i$)が0でないとしましょう。すると、$a_i$を含む項と$c_i$を含む項を右辺に移項して、
+式\ref{eq:difference-liner-final}の行列は常に対角成分$b_i$が0でないとしましょう。すると、$a_i$を含む項と$c_i$を含む項を右辺に移項して、
 
 \begin{eqnarray}
     \pqty{\begin{array}{ccccc}
@@ -788,13 +788,68 @@ $n$段のルンゲ・クッタ法は、
         \STATE $Y_i'\Leftarrow Y_i$
         \STATE $Y_i\Leftarrow h^2R(x_i)-\boldsymbol{a}_iY_{i-1}''-\boldsymbol{c}_iY_{i+1}''$
     \ENDFOR
+    \FOR{$i=1$ \TO $N-1$}
+        \STATE $Y_i''=Y_i'$
+    \ENDFOR
 \ENDWHILE
-\FOR{$i=1$ \TO $N-1$}
-    \STATE $Y_i''=Y_i'$
-\ENDFOR
 \RETURN $\boldsymbol{Y}$
 \end{algorithmic}
 \end{algorithm}
+
+
+もう少し一般的に書きましょう。式\ref{eq:difference-liner-final}を、行列$A$、ベクトル$\boldsymbol{Y}$および$\boldsymbol{b}$を用いて書き直すと、
+
+\begin{eqnarray}
+    A\boldsymbol{Y}=\boldsymbol{b}
+    \label{eq:coalition}
+\end{eqnarray}
+
+\noindent
+となります。ここで、$A$を一般的に
+
+\begin{eqnarray}
+    A=\pqty{\begin{array}{cccc}
+        a_{1\ 1} & a_{1\ 2} & \cdots & a_{1\ N} \\
+        a_{2\ 1} & a_{2\ 2} & \cdots & a_{2\ N} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{N\ 1} & a_{N\ 2} & \cdots & a_{N\ N}
+        \end{array}}
+\end{eqnarray}
+
+\noindent
+と置いて、$A=D+M$として$A$を以下の2つの行列に分けましょう。
+
+\begin{eqnarray}
+    D=\pqty{\begin{array}{cccc}
+        a_{1\ 1} & 0 & \cdots & 0 \\
+        0 & a_{2\ 2} & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & a_{N\ N}
+        \end{array}},\ 
+    M=\pqty{\begin{array}{cccc}
+        0 & a_{1\ 2} & \cdots & a_{1\ N} \\
+        a_{2\ 1} & 0 & \cdots & a_{2\ N} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{N\ 1} & a_{N\ 2} & \cdots & 0
+        \end{array}}
+\end{eqnarray}
+
+すると、
+
+\begin{eqnarray}
+    (D+M)\boldsymbol{Y}&=&\boldsymbol{b} \\
+    D\boldsymbol{Y}&=&-M\boldsymbol{Y}+\boldsymbol{b} \nonumber \\
+    \boldsymbol{Y}&=&-D^{-1}M\boldsymbol{Y}+D^{-1}\boldsymbol{b} \setcounter{equation}{72}
+\end{eqnarray}
+
+ここで、左辺を$i+1$回目の計算、右辺を$i$回目の計算とすると、
+
+\begin{eqnarray}
+    \boldsymbol{Y}^{(i+1)}&=&-D^{-1}M\boldsymbol{Y}^{(i)}+D^{-1}\boldsymbol{b}
+\end{eqnarray}
+
+\noindent
+となり、$i$回目の計算で使用した$Y$を再利用して$i+1$回目の計算を行えます。
 
 
 
@@ -805,7 +860,7 @@ $n$段のルンゲ・クッタ法は、
 
 \subsubsection{ガウス・ザイデル法}
 \label{gauss-seidel}
-ヤコビ法の収束を早めた方法として、ガウス・ザイデル法があります。ヤコビ法では$Y_i^{(j+1)}$の値を求めるのに$Y_{i+1}^{(j)}$と$Y_{i-1}^{(j)}$の値を使っていましたが、ここで少し考えてみましょう。アルゴリズム\ref{al:difference-jacobian}を見ると、$Y_i^{(j+1)}$を求める時点で$Y_{i-1}^{(j+1)}$が求まっています。$Y_{i-1}^{(j)}$よりも$Y_{i-1}^{(j+1)}$を使った方が収束が早くなります。このように、$j+1$回目の計算をするときになるべく$j+1$回目にすでに行った計算結果を使う手法をガウス・ザイデル法と言います。これを擬似コードにするとヤコビ法より簡潔になります。
+ヤコビ法の収束を早めた方法として、ガウス・ザイデル法があります。ヤコビ法では$Y_i^{(j+1)}$の値を求めるのに$Y_{i+1}^{(j)}$と$Y_{i-1}^{(j)}$の値を使っていましたが、ここで少し考えてみましょう。アルゴリズム\ref{al:difference-jacobian}を見ると、$Y_i^{(j+1)}$を求める時点で$Y_{i-1}^{(j+1)}$が求まっています。$Y_{i-1}^{(j)}$よりも$Y_{i-1}^{(j+1)}$を使った方が収束が早くなります。このように、$j+1$回目の計算をするときになるべく$j+1$回目にすでに行った計算結果を使う手法をガウス・ザイデル法と言います。これを擬似コードにするとヤコビ法より簡潔になります(アルゴリズム\ref{al:difference-gauss-seidel})。
 
 \begin{algorithm}
 \label{al:difference-gauss-seidel}
@@ -829,9 +884,41 @@ $n$段のルンゲ・クッタ法は、
 \end{algorithmic}
 \end{algorithm}
 
+ガウス・ザイデル法も行列演算を使って表しましょう。行列$A$を$A=D+L+U$として分解します。ここで$D$はヤコビ法のものと同じで、$L$と$U$はそれぞれ下三角行列と上三角行列で、
 
+\begin{eqnarray}
+    L=\pqty{\begin{array}{cccc}
+        0 & 0 & \cdots & 0 \\
+        a_{2\ 1} & 0 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{N\ 1} & a_{N\ 2} & \cdots & 0
+        \end{array}},\ 
+    U=\pqty{\begin{array}{cccc}
+        0 & a_{1\ 2} & \cdots & a_{1\ N} \\
+        0 & 0 & \cdots & a_{2\ N} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & 0
+        \end{array}}
+\end{eqnarray}
 
+\noindent
+です。これらを使って元の連立方程式\ref{eq:coalition}を書き直すと、
 
+\begin{eqnarray}
+    (D+L+U)\boldsymbol{Y}=\boldsymbol{b} \\
+    D\boldsymbol{Y}=-L\boldsymbol{Y}-U\boldsymbol{Y}+\boldsymbol{b} \nonumber \\
+    \boldsymbol{Y}=-D^{-1}L\boldsymbol{Y}-D^{-1}U\boldsymbol{Y}+D^{-1}\boldsymbol{b} \setcounter{equation}{76}
+\end{eqnarray}
+
+\noindent
+となります。ここで、計算回数を明記すると
+
+\begin{eqnarray}
+    \boldsymbol{Y}^{(i+1)}=-D^{-1}L\boldsymbol{Y}^{(i+1)}-D^{-1}U\boldsymbol{Y}^{(i)}+D^{-1}\boldsymbol{b}
+\end{eqnarray}
+
+\noindent
+です。右辺第一項は、下三角行列に$\boldsymbol{Y}$が掛かっているので、$\boldsymbol{Y}$の$i+1$回目の計算が完了している部分です。よって、ここにかかる$\boldsymbol{Y}$は$i+1$回目の計算結果を使用します。
 
 
 
