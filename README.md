@@ -19,4 +19,5 @@ GitHubのPDFビューワでは日本語がうまく表示できないことが�
 | 2020年12月1日  | 誤植の修正、内容の追加(演算子法、ラプラス変換) | 第3版 | https://github.com/Nyanyan/DifferentialEquation/releases/tag/3.0 |
 | 2020年12月8日  | 誤植の修正、内容の追加(常微分方程式解析解例題) | 第4版 | https://github.com/Nyanyan/DifferentialEquation/releases/tag/4.0 |
 | 2020年12月9日  | 誤植の修正、内容の追加(例題)                   | 第5版 | https://github.com/Nyanyan/DifferentialEquation/releases/tag/5.0 |
+| 2020年12月10日 | 内容の追加(連立偏微分方程式の数値解法)         | 第6版 | https://github.com/Nyanyan/DifferentialEquation/releases/tag/6.0 |
 
