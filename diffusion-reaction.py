@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-from random import random
-from numba import jit
 
 height = 100
 width = 100
